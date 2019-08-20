@@ -8,6 +8,7 @@ import java.util.List;
 import javax.websocket.Session;
 import javax.servlet.http.HttpServletRequest;
 import com.mycompany.car_center.eventos.EventosgestionDisponibilidad;
+import com.mycompany.car_center.eventos.EventosgestionDisponibilidadResp;
 import javax.servlet.http.HttpSession;
 
 /**
@@ -16,33 +17,36 @@ import javax.servlet.http.HttpSession;
  */
 public class AWgestionDisponibilidad {
     
-    public final String BUSCAR_MECANICOS = "BUSCAR_MECANICOS";
+    public static final String BUSCAR_MECANICOS = "BUSCAR_MECANICOS";
+    private String accion;
     
-    public EventosgestionDisponibilidad perform(HttpServletRequest request) {
-        accion = request.getParameter(WebKeys.ACCION);
-        if ((accion == null) || (accion.trim().length() == 0)) {
-            throw new AccionInvalidaException("Debe indicar una accion valida");
-        }
-        if (accion.equals(BUSCAR_MECANICOS)) {
-            return buscarMecanicos(request);
-        } else {
-            throw new AccionInvalidaException("La accion " + accion
-                    + " no es valida.");
-        }
-    }
-    
-    public void doEnd(HttpServletRequest request,EventosgestionDisponibilidad eventoRespuesta) {
-        EventosgestionDisponibilidad respuesta = new EventosgestionDisponibilidad();
-        HttpSession session = request.getSession();
+        public EventosgestionDisponibilidad perform(HttpServletRequest request) throws Exception {
 
-            if (respuesta != null) {
-                if (respuesta.getTipoEvento().equals(EvnRespPago.PROCESAMIENTO_PAGO)) {
-                    request.getSession().removeAttribute(AWCertificadoMasivo.NOTA_INF_CERTIFICADOS_MASIVOS);
+            accion = request.getParameter(WebKeys.ACCION);
+            if ((accion == null) || (accion.trim().length() == 0)) {
+                throw new Exception("Debe indicar una accion valida");
+            }
+
+            if (accion.equals(BUSCAR_MECANICOS)) {
+                buscarMecanicos(request);
+            } else {
+                throw new Exception("La accion " + accion  + " no es valida.");
+            }
+            return null;
+        }
+    
+        public void doEnd(HttpServletRequest request,EventosgestionDisponibilidad eventoRespuesta) {
+            EventosgestionDisponibilidad respuesta = new EventosgestionDisponibilidad();
+            HttpSession session = request.getSession();
+
+                if (respuesta != null) {
+                    if (respuesta.getTipoEvento().equals(EventosgestionDisponibilidadResp.BUSCAR_MECANICOS)) {
+
+                    }
                 }
             }
-        }
         
-    private List buscarMecanicos(HttpServletRequest request) {
+    private List buscarMecanicos(HttpServletRequest request)throws Exception {
 
             double valorConvenio = 0.0d;
 
@@ -50,50 +54,14 @@ public class AWgestionDisponibilidad {
                 valorConvenio = Double.parseDouble(request.getParameter(AWgestionDisponibilidad.BUSCAR_MECANICOS));
 
                 if (valorConvenio < 0) {
-                    vpe.addError("El valor no puede ser negativo.");
-            }
+                    throw new Exception("El valor no puede ser negativo.");
+                }
+
             } catch (NumberFormatException e) {
-                vpe.addError("El valor en convenio no es v�lido.");
-            }            
-            if(request.getSession().getAttribute(WebKeys.NOMBRE_MECANICO) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-            if(request.getSession().getAttribute(WebKeys.TIPO_DOCUMENTO_MECANICO) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-            if(request.getSession().getAttribute(WebKeys.DOCUMENTO) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-            if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                        if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                                    if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                                                if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                                                            if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                                                                        if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                                                                                    if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
-            }
-                                                                                                if(request.getSession().getAttribute(WebKeys.PRIMER_NOMBRE) != null){
-                vpe.addError("debe ingresar un nombre.");
+                throw new Exception("El valor en convenio no es v�lido.");
             }
 
-            if (vpe.getErrores().size() > 0) {
-                throw vpe;
-            }
-
-            return aplicacionConvenio;
+            return null;
     }
     
 }

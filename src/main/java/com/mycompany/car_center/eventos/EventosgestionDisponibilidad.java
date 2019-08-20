@@ -16,12 +16,25 @@ public class EventosgestionDisponibilidad {
     public final String PRIORIDAD_MECANICOS = "PRIORIDAD_MECANICOS";
     private String accion;
     private Object objecto;
+    private String tipoEvento;
+
+    public EventosgestionDisponibilidad() {
+
+    }
 
     public EventosgestionDisponibilidad(Object obj, String accion) {
         
         this.accion = accion;
         this.objecto = obj;
         
+    }
+
+    public String getTipoEvento() {
+        return tipoEvento;
+    }
+
+    public void setTipoEvento(String tipoEvento) {
+        this.tipoEvento = tipoEvento;
     }
 
 }
