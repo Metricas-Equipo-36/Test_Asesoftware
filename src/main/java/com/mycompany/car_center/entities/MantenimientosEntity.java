@@ -5,10 +5,21 @@ import java.sql.Date;
 
 @Entity
 @Table(name = "mantenimientos", schema = "carcenter", catalog = "")
+@NamedQuery(name = MantenimientosEntity.FIND_ALL_CUSTOM,
+        query = "SELECT m2.*, sum(sxm.tiempoEstimado) as time FROM MantenimientosEntity AS m\n" +
+                "INNER JOIN ServiciosXMantenimientoEntity sxm on m.codigo = sxm.mantenimientosByCodMantenimiento\n" +
+                "INNER JOIN MecanicosEntity m2 on m.mecanivosByTipoDocumento = m2.tipoDocumento and m.mecanivosByDocumento = m2.documento\n" +
+                "WHERE m2.estado = 'D' and m.estado = 1\n" +
+                "group by m2.documento\n" +
+                "order by time asc\n" +
+                "limit 10;")
 public class MantenimientosEntity {
+    public static final String FIND_ALL_CUSTOM = "MantenimientosEntity.findAllCustom";
     private int codigo;
     private Integer estado;
     private Date fecha;
+    private MecanicosEntity mecanivosByTipoDocumento;
+    private MecanicosEntity mecanivosByDocumento;
 
     @Id
     @Column(name = "CODIGO")
@@ -61,4 +72,25 @@ public class MantenimientosEntity {
         result = 31 * result + (fecha != null ? fecha.hashCode() : 0);
         return result;
     }
+
+    @ManyToOne
+    @JoinColumn(name = "MEC_TIPO_DOCUMENTO", referencedColumnName = "TIPO_DOCUMENTO", nullable = false)
+    public MecanicosEntity getMecanicosByTipoDocumento() {
+        return mecanivosByTipoDocumento;
+    }
+
+    public void setMecanicosByTipoDocumento(MecanicosEntity mecanivosByTipoDocumento) {
+        this.mecanivosByTipoDocumento = mecanivosByTipoDocumento;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "MEC_DOCUMENTO", referencedColumnName = "DOCUMENTO", nullable = false)
+    public MecanicosEntity getMecanicosByDocumento() {
+        return mecanivosByDocumento;
+    }
+
+    public void setMecanicosByDocumento(MecanicosEntity mecanivosByDocumento) {
+        this.mecanivosByDocumento = mecanivosByDocumento;
+    }
+
 }
