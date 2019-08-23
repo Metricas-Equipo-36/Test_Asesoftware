@@ -1,8 +1,3 @@
-Back End Prueba Estación de Mantenimientos AseSoftware
-Se crea el Modelo y Sericios en Back en Spring Data. En el cual, es consumido por el SERVICIO appTestAsesoftware
+Back End Test AseSoftware Maintenance Station The Model and Services are created in Back in Spring Data. In which, it is consumed by the appTestAsesoftware SERVICE
 
-Pasos para ejecutar el código:
-Descargar el proyecto en un directorio.
-Abrir el proyecto con Intelij Idea
-Correr el proyecto con Apache Tomcat
-Y por último, en el navegador, abrir el siguiente enlance: http://localhost:8080/.
+Steps to execute the code: Download the project in a directory. Open the project with Intelij Idea Run the project with Apache Tomcat And finally, in the browser, open the following link: http: // localhost: 8080 /.
