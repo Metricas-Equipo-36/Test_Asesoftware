@@ -12,6 +12,15 @@ public class MecanicoDto {
     private String direccion;
     private String email;
     private String estado;
+    private int tiempo;
+
+    public int getTiempo() {
+        return tiempo;
+    }
+
+    public void setTiempo(int tiempo) {
+        this.tiempo = tiempo;
+    }
 
     public String getTipoDocumento() {
         return tipoDocumento;

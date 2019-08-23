@@ -156,4 +156,5 @@ public class MecanicosEntity {
         result = 31 * result + (estado != null ? estado.hashCode() : 0);
         return result;
     }
+
 }

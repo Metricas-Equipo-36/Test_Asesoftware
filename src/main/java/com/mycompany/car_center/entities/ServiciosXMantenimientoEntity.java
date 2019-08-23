@@ -4,7 +4,14 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "servicios_x_mantenimiento", schema = "carcenter", catalog = "")
+@NamedQuery(name = ServiciosXMantenimientoEntity.FIND_ALL_CUSTOM,
+        query = "select me from ServiciosXMantenimientoEntity me " +
+                "inner join MantenimientosEntity m on me.mantenimientosByCodMantenimiento = m.codigo\n" +
+                "inner join MecanicosEntity mec on m.mecanicos.tipoDocumento = mec.tipoDocumento\n" +
+                 "where mec.estado = 'D' and m.estado = 1")
+
 public class ServiciosXMantenimientoEntity {
+    public static final String FIND_ALL_CUSTOM = "ServiciosXMantenimientoEntity.findAllCustom";
     private int codigo;
     private int tiempoEstimado;
     private ServiciosEntity serviciosByCodServicio;

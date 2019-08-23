@@ -7,11 +7,12 @@ import com.mycompany.car_center.repositories.MecanicosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.awt.print.Pageable;
 import java.util.List;
 
 @Service
 public class MecanicosService {
-
+    Pageable pageable;
     @Autowired
     MecanicosRepository repository;
 
@@ -34,5 +35,9 @@ public class MecanicosService {
 
         return (List<MecanicosEntity>) repository.findAll();
     }
+
+//    public List<MecanicosEntity> getMantenimientos(){
+//        return (List<MecanicosEntity>) repository.findAllCustom(pageable);
+//    }
 
 }
