@@ -35,12 +35,6 @@ public class MecanicoDtoTest {
     }
 
     @Test
-    public void mecanicoDtoTestObject() throws Exception {
-        MecanicoDto mecanicoDto new = MecanicoDto();
-        assertNotNull(new mecanicoDto());
-    }
-
-    @Test
     public void testFromEntityToDTO() {
         UsuarioDTO uDto = MecanicoDto.map(dto);
 
