@@ -25,7 +25,7 @@ public class MantenimientosController {
         System.out.println("Se van a consultar los mantenimientos filtrados");
         List<MantenimientosEntity> mantenimientos = service.getMantenimientos();
         System.out.println("Se consultaron los mantenimientos filtrados");
-        return new ResponseEntity<>(mantenimientos, HttpStatus.OK);
+        return null;
     }
 
 }
