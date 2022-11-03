@@ -59,14 +59,7 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
-             
-        <!-- https://mvnrepository.com/artifact/com.sun.javafx/mediabox -->
-        <dependency>
-            <groupId>com.sun.javafx</groupId>
-            <artifactId>mediabox</artifactId>
-            <version>20100527</version>
-        </dependency>
-             
+ 
     </dependencies>
 
     <properties>
