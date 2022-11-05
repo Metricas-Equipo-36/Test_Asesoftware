@@ -14,12 +14,7 @@ public class MarcasService {
     @Autowired
     private MarcaRepository repository;
 
-    private MarcasEntity marcasEntity = null;
-
     public MarcasEntity saveMarca(String marca) {
-        if(marcasEntity.equals("falla")){
-            return null;
-        }
         MarcasEntity entity = new MarcasEntity();
         entity.setNombreMarca(marca);
         return repository.save(entity);
