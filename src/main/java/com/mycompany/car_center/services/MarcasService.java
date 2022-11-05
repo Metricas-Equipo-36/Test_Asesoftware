@@ -16,6 +16,10 @@ public class MarcasService {
 
     private MarcasEntity marcasEntity = null;
 
+    public MarcasService(MarcaRepository repository) {
+        this.repository = repository;
+    }
+
     public MarcasEntity saveMarca(String marca) {
         if(marcasEntity.equals("falla")){
             return null;
