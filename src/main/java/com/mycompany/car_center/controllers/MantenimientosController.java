@@ -2,10 +2,8 @@ package com.mycompany.car_center.controllers;
 
 
 import com.mycompany.car_center.entities.MantenimientosEntity;
-import com.mycompany.car_center.entities.MecanicosEntity;
 import com.mycompany.car_center.services.MantenimientosService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
