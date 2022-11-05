@@ -13,8 +13,12 @@ import java.util.List;
 @Service
 public class MecanicosService {
     Pageable pageable;
-    @Autowired
+
     MecanicosRepository repository;
+
+    public MecanicosService(MecanicosRepository repository) {
+        this.repository = repository;
+    }
 
     public MecanicosEntity saveMecanico(MecanicoDto mecanicoDto){
         MecanicosEntity mecanicosEntity = new MecanicosEntity();

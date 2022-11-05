@@ -14,6 +14,13 @@ public class MarcasService {
     @Autowired
     private MarcaRepository repository;
 
+    private MarcasEntity marcasEntity = null;
+
+    public MarcasService(MarcaRepository repository) {
+        this.repository = repository;
+    }
+
+
     public MarcasEntity saveMarca(String marca) {
         MarcasEntity entity = new MarcasEntity();
         entity.setNombreMarca(marca);

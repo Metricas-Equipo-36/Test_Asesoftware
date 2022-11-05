@@ -83,6 +83,11 @@
                 <version>${jacoco.version}</version>
                 <configuration>
                     <append>true</append>
+                    <excludes>
+                        <exclude>**/src/main/java/com/mycompany/car_center/entities/*</exclude>
+                        <exclude>**/src/main/java/com/mycompany/car_center/dto/*</exclude>
+                        <exclude>**/src/main/java/com/mycompany/car_center/repositories/*</exclude>
+                    </excludes>
                 </configuration>
                 <executions>
                     <execution>
