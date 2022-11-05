@@ -14,8 +14,10 @@ public class MarcasService {
     @Autowired
     private MarcaRepository repository;
 
+    private MarcasEntity marcasEntity = null;
 
     public MarcasEntity saveMarca(String marca) {
+        marcasEntity.setCodigo(1);
         MarcasEntity entity = new MarcasEntity();
         entity.setNombreMarca(marca);
         return repository.save(entity);
